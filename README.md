@@ -93,6 +93,20 @@ The app will be available at `http://localhost:8501`
 - Loading indicators
 - Clean, minimal UI
 
+## Git commands
+
+git add .
+git commit -m "commit message"
+git push -u origin main
+
+### Git new repo
+
+git init
+git add .
+git commit -m "Initial commit: AI Chat Assistant"
+git remote add origin https://github.com/YOUR_USERNAME/ai-chat-assistant.git
+git push -u origin main
+
 ## Troubleshooting
 
 If you encounter any issues:
