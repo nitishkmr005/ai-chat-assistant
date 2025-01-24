@@ -254,7 +254,7 @@ def get_llm_response(prompt, include_history=False):
         response = requests.post(
             'http://localhost:11434/api/generate',
             json={
-                'model': 'phi4',
+                'model': 'deepseek-r1:7b',#'phi4',
                 'prompt': prompt,
                 'stream': True
             },
