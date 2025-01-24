@@ -18,9 +18,43 @@ A modern, ChatGPT-like interface built with Streamlit and Ollama.
 
 ## Installation
 
+### 1. Install Ollama
+
+#### For Linux:
+```bash
+# Install Ollama
+curl https://ollama.ai/install.sh | sh
+
+# Start Ollama service
+ollama serve
+
+# In a new terminal, pull the phi4 model
+ollama pull phi4
+```
+
+#### For Linux (Manual Installation):
+```bash
+# Download the latest release
+curl -L https://github.com/ollama/ollama/releases/latest/download/ollama-linux-amd64 -o ollama
+
+# Make it executable
+chmod +x ollama
+
+# Move it to your path
+sudo mv ollama /usr/local/bin
+
+# Start Ollama service
+ollama serve
+
+# In a new terminal, pull the phi4 model
+ollama pull phi4
+```
+
+### 2. Install the Application
+
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ai-chat-assistant.git
+git clone https://github.com/nitishkmr005/ai-chat-assistant.git
 cd ai-chat-assistant
 ```
 
@@ -35,14 +69,14 @@ source myenv/bin/activate  # On Windows: myenv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Make sure Ollama is running with phi4 model installed:
-```bash
-ollama run phi4
-```
-
 ## Usage
 
-Run the Streamlit app:
+1. Make sure Ollama service is running:
+```bash
+ollama serve
+```
+
+2. In a new terminal, run the Streamlit app:
 ```bash
 streamlit run app.py
 ```
@@ -58,6 +92,29 @@ The app will be available at `http://localhost:8501`
 - Responsive design
 - Loading indicators
 - Clean, minimal UI
+
+## Troubleshooting
+
+If you encounter any issues:
+
+1. Make sure Ollama service is running:
+```bash
+# Check if Ollama is running
+ps aux | grep ollama
+
+# If not running, start it:
+ollama serve
+```
+
+2. Verify the phi4 model is installed:
+```bash
+ollama list
+```
+
+3. Check Ollama logs:
+```bash
+journalctl -u ollama
+```
 
 ## License
 
