@@ -1,14 +1,14 @@
-# AI Chat Assistant
+# Ollama Model Explorer
 
-A modern, Claude-inspired chat interface built with Flask and Ollama, featuring real-time streaming responses and code syntax highlighting.
+A modern chat interface for exploring and testing different open-source LLMs through Ollama. Built with Flask, this application provides a seamless way to interact with various open-source language models like DeepSeek, Phi-4, OpenHermes, and Qwen.
 
 ## Features
 
-- 🎨 Modern, clean UI design
+- 🤖 Test multiple open-source LLMs in one interface
+- 🔄 Easy model switching without restart
+- 🌡️ Real-time temperature adjustment for model responses
 - 💬 Real-time message streaming
 - 🎨 Code syntax highlighting with line numbers
-- 🌡️ Temperature control
-- 🤖 Multiple model support
 - 📋 Code copy functionality
 - 💫 Smooth animations
 
