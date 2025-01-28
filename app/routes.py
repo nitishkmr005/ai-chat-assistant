@@ -11,6 +11,12 @@ main = Blueprint('main', __name__)
 
 def format_message(content):
     """Format message with markdown and code highlighting"""
+    # Unescape HTML entities before processing
+    content = content.replace('&quot;', '"')
+    content = content.replace('&lt;', '<')
+    content = content.replace('&gt;', '>')
+    content = content.replace('&amp;', '&')
+    
     # Convert markdown to HTML
     html_content = markdown.markdown(
         content,
@@ -20,16 +26,36 @@ def format_message(content):
     # Process code blocks
     def replace_code_block(match):
         language = match.group(1) or 'text'
-        code = match.group(2)
+        code = match.group(2).strip()
+        
+        # Unescape HTML entities in code blocks
+        code = code.replace('&quot;', '"')
+        code = code.replace('&lt;', '<')
+        code = code.replace('&gt;', '>')
+        code = code.replace('&amp;', '&')
+        
         try:
             lexer = get_lexer_by_name(language, stripall=True)
         except:
             lexer = TextLexer()
         
-        highlighted = highlight(code, lexer, HtmlFormatter())
+        formatter = HtmlFormatter(
+            linenos='table',
+            cssclass='highlight',
+            style='monokai',
+            noclasses=False
+        )
+        
+        highlighted = highlight(code, lexer, formatter)
+        
         return f'''
         <div class="code-block">
-            <div class="language-tag">{language}</div>
+            <div class="code-header">
+                <span class="language-tag">{language}</span>
+                <button class="copy-button" onclick="copyCode(this)">
+                    Copy code
+                </button>
+            </div>
             {highlighted}
         </div>
         '''

@@ -1,3 +1,24 @@
+// Move copyCode function outside DOMContentLoaded
+function copyCode(button) {
+    const codeBlock = button.closest('.code-block');
+    const code = codeBlock.querySelector('code').innerText;
+    
+    navigator.clipboard.writeText(code).then(() => {
+        const originalText = button.innerText;
+        button.innerText = 'Copied!';
+        button.style.backgroundColor = '#30A46C';
+        button.style.borderColor = '#30A46C';
+        button.style.color = '#fff';
+        
+        setTimeout(() => {
+            button.innerText = originalText;
+            button.style.backgroundColor = '';
+            button.style.borderColor = '';
+            button.style.color = '';
+        }, 2000);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const messagesContainer = document.getElementById('messages');
     const userInput = document.getElementById('user-input');
