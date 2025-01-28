@@ -61,8 +61,8 @@ Download and install from [Ollama's official website](https://ollama.ai/download
 # Install the models you want to use
 ollama pull deepseek-r1:7b
 ollama pull phi4
-ollama pull openhermes2.5-mistral
-ollama pull qwen2:32b
+ollama pull openhermes
+ollama pull qwen2.5:32b
 ```
 
 ### 4. Set Up Python Environment
