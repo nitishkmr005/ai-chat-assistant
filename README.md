@@ -180,3 +180,51 @@ ai-chat-assistant/
 ## License
 
 MIT 
+
+## Data Privacy & Security
+
+### Local Processing
+- All chat processing is done **locally** on your machine
+- No data is sent to external servers or cloud services
+- Ollama runs completely offline once models are downloaded
+- Chat history is stored only in browser session (cleared on browser close)
+
+### Data Flow
+1. User input stays within your local network
+2. Messages are processed by Ollama locally
+3. No data logging or persistence by default
+4. No external API calls or tracking
+
+### Model Storage
+- Models are downloaded once and stored locally at:
+  - Linux: `~/.ollama/models`
+  - macOS: `~/.ollama/models`
+  - Windows: `C:\Users\username\.ollama\models`
+
+### Network Usage
+- Internet connection needed only for:
+  - Initial model downloads
+  - Updating Ollama software
+- No internet required for chat functionality
+
+### Security Considerations
+- All processing happens on localhost (127.0.0.1)
+- Default port 11434 for Ollama
+- Flask runs on localhost:5000
+- No external authentication required
+- Recommended to run behind firewall
+
+### Data Isolation
+- No cloud sync
+- No telemetry
+- No usage tracking
+- No data sharing between sessions
+
+### Best Practices
+1. Run behind firewall
+2. Don't expose ports to public internet
+3. Keep Ollama and models updated
+4. Review model licenses for usage terms
+5. Clear browser data to remove chat history
+
+This application prioritizes privacy by keeping all processing local and avoiding any external data transmission beyond initial model downloads. 
