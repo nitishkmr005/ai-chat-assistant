@@ -1,4 +1,4 @@
-# Ollama Model Explorer
+# Open Source Models Explorer
 
 A modern chat interface for exploring and testing different open-source LLMs through Ollama. Built with Flask, this application provides a seamless way to interact with various open-source language models like DeepSeek, Phi-4, OpenHermes, and Qwen.
 
