@@ -22,6 +22,7 @@ A modern, Claude-inspired chat interface built with Flask and Ollama, featuring 
   - phi4
   - openhermes2.5-mistral
   - qwen2:32b
+  - new-model-name
 
 ## Installation
 
@@ -63,6 +64,7 @@ ollama pull deepseek-r1:7b
 ollama pull phi4
 ollama pull openhermes
 ollama pull qwen2.5:32b
+ollama pull new-model-name
 ```
 
 ### 4. Set Up Python Environment
@@ -228,3 +230,60 @@ MIT
 5. Clear browser data to remove chat history
 
 This application prioritizes privacy by keeping all processing local and avoiding any external data transmission beyond initial model downloads. 
+
+## Adding New Models
+
+### 1. Download New Model
+```bash
+# Pull new model from Ollama
+ollama pull new-model-name
+```
+
+### 2. Update Model Selection in HTML
+In `app/templates/chat.html`, add the new model to the dropdown:
+```html
+<select id="model-select">
+    <option value="deepseek-r1:7b">DeepSeek</option>
+    <option value="phi4">Phi-4</option>
+    <option value="openhermes">OpenHermes</option>
+    <option value="qwen2.5:32b">Qwen2</option>
+    <option value="new-model-name">New Model Display Name</option>
+</select>
+```
+
+### 3. Update README
+In the Requirements section, add your new model to the list:
+```markdown
+- One of these models installed:
+  - deepseek-r1:7b
+  - phi4
+  - openhermes
+  - qwen2.5:32b
+  - new-model-name
+```
+
+### 4. Default Model (Optional)
+If you want to change the default model, update in `app/routes.py`:
+```python
+@main.route('/chat', methods=['GET', 'POST'])
+def chat():
+    # Change default model here
+    model = request.args.get('model', 'new-model-name') if request.method == 'GET' \
+        else request.json.get('model', 'new-model-name')
+```
+
+### Model Compatibility Notes
+- Ensure model supports text generation API
+- Check model's required parameters (some might need specific temperature ranges)
+- Test model's response format compatibility
+- Verify model's performance with code generation if needed
+
+### Testing New Model
+1. Pull the model using Ollama
+2. Add to dropdown in HTML
+3. Test with various prompts
+4. Verify code highlighting works
+5. Check response streaming
+6. Test temperature sensitivity
+
+No other code changes are typically needed as the app is designed to work with any Ollama-compatible model. 
