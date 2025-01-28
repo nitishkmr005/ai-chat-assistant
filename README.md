@@ -1,20 +1,23 @@
 # AI Chat Assistant
 
-A modern, ChatGPT-like interface built with Streamlit and Ollama.
+A modern, ChatGPT-like interface built with Flask and Ollama, featuring real-time streaming responses and code syntax highlighting.
 
 ## Features
 
-- 🎨 Modern, responsive UI design
+- 🎨 Modern, Claude-inspired UI design
 - 💬 Real-time message streaming
 - ⚡ Fast response times
-- 🔄 Context-aware conversations
-- 🕒 Message timestamps
+- 🔄 Model selection (deepseek, phi4, openhermes, qwen)
+- 🌡️ Temperature control
+- 📝 Markdown support
+- 🎨 Code syntax highlighting
 - 💫 Smooth animations and transitions
 
 ## Requirements
 
 - Python 3.8+
-- Ollama with phi4 model installed
+- Flask
+- Ollama with required models installed
 
 ## Installation
 
@@ -27,34 +30,22 @@ curl https://ollama.ai/install.sh | sh
 
 # Start Ollama service
 ollama serve
-
-# In a new terminal, pull the phi4 model
-ollama pull phi4
 ```
 
-#### For Linux (Manual Installation):
+### 2. Install Required Models
 ```bash
-# Download the latest release
-curl -L https://github.com/ollama/ollama/releases/latest/download/ollama-linux-amd64 -o ollama
-
-# Make it executable
-chmod +x ollama
-
-# Move it to your path
-sudo mv ollama /usr/local/bin
-
-# Start Ollama service
-ollama serve
-
-# In a new terminal, pull the phi4 model
+# Pull the models
+ollama pull deepseek-r1:7b
 ollama pull phi4
+ollama pull openhermes2.5-mistral
+ollama pull qwen2:32b
 ```
 
-### 2. Install the Application
+### 3. Install the Application
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nitishkmr005/ai-chat-assistant.git
+git clone https://github.com/yourusername/ai-chat-assistant.git
 cd ai-chat-assistant
 ```
 
@@ -76,40 +67,52 @@ pip install -r requirements.txt
 ollama serve
 ```
 
-2. In a new terminal, run the Streamlit app:
+2. Run the Flask app:
 ```bash
-streamlit run app.py
+python run.py
 ```
 
-The app will be available at `http://localhost:8501`
+The app will be available at `http://localhost:5000`
 
 ## Features
 
-- Modern, ChatGPT-like interface
+### UI Features
+- Clean, modern interface inspired by Claude
 - Real-time message streaming
-- Context toggle for conversation memory
-- Timestamps for messages
+- Code syntax highlighting with language detection
+- Markdown formatting support
+- Temperature control slider
+- Model selection dropdown
 - Responsive design
-- Loading indicators
-- Clean, minimal UI
 
-## Git commands
+### Technical Features
+- Server-Sent Events (SSE) for streaming
+- Markdown parsing and rendering
+- Code syntax highlighting using Pygments
+- Real-time temperature adjustment
+- Multiple model support
+- Error handling and recovery
 
-git add .
-git commit -m "commit message"
-git push -u origin main
-
-### Git new repo
-
-git init
-git add .
-git commit -m "Initial commit: AI Chat Assistant"
-git remote add origin https://github.com/YOUR_USERNAME/ai-chat-assistant.git
-git push -u origin main
+## Project Structure
+```
+ai-chat-assistant/
+├── app/
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   └── js/
+│   │       └── main.js
+│   └── templates/
+│       ├── base.html
+│       └── chat.html
+├── config.py
+├── requirements.txt
+└── run.py
+```
 
 ## Troubleshooting
-
-If you encounter any issues:
 
 1. Make sure Ollama service is running:
 ```bash
@@ -120,15 +123,17 @@ ps aux | grep ollama
 ollama serve
 ```
 
-2. Verify the phi4 model is installed:
+2. Verify the models are installed:
 ```bash
 ollama list
 ```
 
-3. Check Ollama logs:
+3. Check Flask app logs for errors:
 ```bash
-journalctl -u ollama
+python run.py
 ```
+
+4. If you see CORS errors, make sure you're accessing the correct URL
 
 ## License
 
