@@ -21,9 +21,12 @@ wheels/
 *.egg
 
 # Virtual Environment
+fresh_env/
+old/
 myenv/
 venv/
-ENV/
+env/
+.env/
 
 # Streamlit
 .streamlit/
@@ -36,4 +39,15 @@ ENV/
 
 # OS
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Local development
+*.log
+.env
+chat_history.db
+uploads/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/ 
